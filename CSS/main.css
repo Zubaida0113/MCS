@@ -1,0 +1,664 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle bottom shadow */
+}
+/* Customize the navbar background color */
+.navbar {
+  background-color: #f8f9fa !important; /* Light gray background */
+  padding: 0.8rem 2rem; /* Add padding to leave space on left and right ends */
+}
+
+/* Customize the navbar brand */
+.navbar-brand {
+  font-size: 1.8rem; /* Increase brand size */
+  font-weight: bold;
+  color: #007bff !important; /* Blue text */
+}
+
+.navbar-brand:hover {
+  color: #0056b3 !important; /* Darker blue on hover */
+}
+
+/* Customize the navbar links */
+.nav-link {
+  font-size: 3.2rem; /* Increase link size */
+  color: #202428 !important; /* Dark gray text */
+}
+
+.nav-link:hover {
+  color: #007bff !important; /* Blue text on hover */
+}
+
+/* Center navbar items on larger screens */
+.navbar-nav {
+  justify-content: center; /* Center items horizontally */
+}
+.container-fluid{
+    margin: 0 20px;
+}
+/* Add spacing between navbar menu items */
+.navbar-nav .nav-item {
+  padding: 0 25px; /* Add horizontal spacing between items */
+}
+
+/* Ensure buttons align properly on smaller screens */
+@media (max-width: 992px) {
+  .navbar-nav {
+    justify-content: start; /* Default alignment for smaller screens */
+  }
+  .d-flex {
+    justify-content: start; /* Default alignment for buttons on smaller screens */
+  }
+}
+
+/* Customize the buttons */
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  font-size: 1.1rem; /* Increase button size */
+  padding: 0.5rem 1rem; /* Adjust button padding */
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.navbar .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 1.1rem; /* Increase button size */
+  padding: 0.5rem 1rem; /* Adjust button padding */
+}
+
+.navbar .btn-primary:hover {
+  background-color: #fff; /* White background on hover */
+  color: #007bff; /* Blue text on hover */
+  border-color: #007bff; /* Blue border on hover */
+}
+
+/* Home section styles */
+#home {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+}
+
+#home h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+#home p {
+  font-size: 1.2rem;
+  color: #343a40;
+}
+
+/* About section styles */
+#about {
+  padding: 3rem 0;
+  background-color: #007bff; /* Blue background */
+  border: 2px solid #0056b3; /* Darker blue border */
+  color: #fff; /* White text */
+}
+.ab{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+}
+
+/* Ensure h2 in About Us section has white text */
+#about h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff !important; /* Force white text */
+}
+
+/* Hero section styles */
+#hero {
+  background-color: #e9f2ff; /* Light blue background */
+  padding: 4rem 0;
+  overflow: hidden; /* Ensure content stays within the hero section */
+  display: flex;
+  align-items: center; /* Center content vertically */
+  min-height: calc(80vh - 80px); /* Adjust dynamically based on viewport height minus navbar height */
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0056b3; /* Dark blue text */
+}
+
+#hero p {
+  font-size: 1.2rem;
+  color: #6c757d; /* Secondary text color */
+}
+
+#hero .btn-primary {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#hero .btn-outline-primary {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#hero .image-section img {
+  width: 100%; /* Ensure the image takes full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 400px; /* Limit the maximum height */
+  object-fit: cover; /* Ensure the image scales properly */
+}
+
+#hero .container {
+  display: flex;
+  align-items: stretch; /* Ensure both text and image stretch equally */
+}
+
+/* Adjust hero section image size for smaller screens */
+@media (max-width: 768px) {
+  #hero .text-section {
+    text-align: left; /* Align text to the left */
+  }
+
+  #hero .image-section img {
+    width: 80%; /* Reduce the width of the image */
+    max-height: 300px; /* Limit the maximum height for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image */
+    display: block; /* Ensure proper centering */
+  }
+
+  #hero .container {
+    flex-direction: column; /* Stack text and image vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+}
+
+/* Adjust hero section image size for screens with max-width 992px */
+@media (max-width: 992px) {
+  #hero .text-section {
+    text-align: left; /* Align text to the left */
+  }
+
+  #hero .image-section img {
+    width: 90%; /* Reduce the width of the image */
+    max-height: 350px; /* Limit the maximum height for tablet screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image */
+    display: block; /* Ensure proper centering */
+  }
+
+  #hero .container {
+    flex-direction: column; /* Stack text and image vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+}
+
+/* Adjust hero section size for laptop screens */
+@media (min-width: 992px) and (max-width: 1200px) {
+  #hero {
+    padding: 3rem 0; /* Reduce padding for laptop screens */
+  }
+  #hero .text-section h1 {
+    font-size: 2.5rem; /* Adjust font size */
+  }
+  #hero .text-section p {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+  #hero .image-section img {
+    max-width: 80%; /* Scale down the image */
+  }
+}
+
+/* How It Works section styles */
+#how-it-works {
+  padding: 3rem 0;
+  background-color: #f8f9fa; 
+}
+
+#how-it-works h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff; /* Blue text */
+}
+
+#how-it-works .step img {
+  height: 56px; /* Match the approximate height of the navbar */
+  width: auto; /* Maintain aspect ratio */
+  border-radius: 0; /* Ensure rectangular shape */
+  background-color: transparent; /* Remove background color */
+  padding: 0; /* Remove padding */
+}
+
+#how-it-works .step h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#how-it-works .step p {
+  font-size: 0.95rem;
+  color: #adb5bd; /* Muted text color */
+}
+
+#how-it-works .step h5:nth-child(1) {
+  color: #007bff; /* Blue */
+}
+
+#how-it-works .step h5:nth-child(2) {
+  color: #28a745; /* Green */
+}
+
+#how-it-works .step h5:nth-child(3) {
+  color: #6f42c1; /* Purple */
+}
+
+#how-it-works .step h5:nth-child(4) {
+  color: #e83e8c; /* Pink */
+}
+
+/* Feedback Carousel styles */
+#feedbackCarousel .carousel-control-prev,
+#feedbackCarousel .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+}
+
+#feedbackCarousel .carousel-control-prev {
+  left: -100px; /* Adjust position to the left */
+}
+
+#feedbackCarousel .carousel-control-next {
+  right: -100px; /* Adjust position to the right */
+}
+
+#feedbackCarousel .bi-arrow-left-circle,
+#feedbackCarousel .bi-arrow-right-circle {
+  font-size: 2rem; /* Adjust icon size */
+  color: #6da2e8; /* Blue color for arrows */
+}
+
+#feedbackCarousel .bi-arrow-left-circle:hover,
+#feedbackCarousel .bi-arrow-right-circle:hover {
+  color: #75aae3; /* Darker blue on hover */
+}
+
+/* Carousel navigation arrows */
+.arrow {
+  display: inline-block;
+  background-color: #fff; /* White background */
+  color: #007bff; /* Blue arrow color */
+  padding: 0.5rem 1rem;
+  border-radius: 50%; /* Circular shape */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  border: 2px solid #007bff; /* Blue border */
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  position: absolute; /* Position arrows absolutely */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for proper centering */
+  z-index: 10; /* Ensure arrows are above other elements */
+}
+
+.arrow:hover {
+  background-color: #007bff; /* Blue background on hover */
+  color: #fff; /* White text on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.arrow-left {
+  left: -50px; /* Position to the left of the carousel */
+}
+
+.arrow-right {
+  right: -50px; /* Position to the right of the carousel */
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle bottom shadow */
+}
+/* Customize the navbar background color */
+.navbar {
+  background-color: #f8f9fa !important; /* Light gray background */
+  padding: 0.8rem 2rem; /* Add padding to leave space on left and right ends */
+}
+
+/* Customize the navbar brand */
+.navbar-brand {
+  font-size: 1.8rem; /* Increase brand size */
+  font-weight: bold;
+  color: #007bff !important; /* Blue text */
+}
+
+.navbar-brand:hover {
+  color: #0056b3 !important; /* Darker blue on hover */
+}
+
+/* Customize the navbar links */
+.nav-link {
+  font-size: 3.2rem; /* Increase link size */
+  color: #202428 !important; /* Dark gray text */
+}
+
+.nav-link:hover {
+  color: #007bff !important; /* Blue text on hover */
+}
+
+/* Center navbar items on larger screens */
+.navbar-nav {
+  justify-content: center; /* Center items horizontally */
+}
+.container-fluid{
+    margin: 0 20px;
+}
+/* Add spacing between navbar menu items */
+.navbar-nav .nav-item {
+  padding: 0 25px; /* Add horizontal spacing between items */
+}
+
+/* Ensure buttons align properly on smaller screens */
+@media (max-width: 992px) {
+  .navbar-nav {
+    justify-content: start; /* Default alignment for smaller screens */
+  }
+  .d-flex {
+    justify-content: start; /* Default alignment for buttons on smaller screens */
+  }
+}
+
+/* Customize the buttons */
+.btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+  font-size: 1.1rem; /* Increase button size */
+  padding: 0.5rem 1rem; /* Adjust button padding */
+}
+
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.navbar .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-size: 1.1rem; /* Increase button size */
+  padding: 0.5rem 1rem; /* Adjust button padding */
+}
+
+.navbar .btn-primary:hover {
+  background-color: #fff; /* White background on hover */
+  color: #007bff; /* Blue text on hover */
+  border-color: #007bff; /* Blue border on hover */
+}
+
+/* Home section styles */
+#home {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+}
+
+#home h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+#home p {
+  font-size: 1.2rem;
+  color: #343a40;
+}
+
+/* About section styles */
+#about {
+  padding: 3rem 0;
+  background-color: #007bff; /* Blue background */
+  border: 2px solid #0056b3; /* Darker blue border */
+  color: #fff; /* White text */
+}
+.ab{
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff; /* White text */
+}
+
+/* Ensure h2 in About Us section has white text */
+#about h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff !important; /* Force white text */
+}
+
+/* Hero section styles */
+#hero {
+  background-color: #e9f2ff; /* Light blue background */
+  padding: 4rem 0;
+  overflow: hidden; /* Ensure content stays within the hero section */
+  display: flex;
+  align-items: center; /* Center content vertically */
+  min-height: calc(80vh - 80px); /* Adjust dynamically based on viewport height minus navbar height */
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0056b3; /* Dark blue text */
+}
+
+#hero p {
+  font-size: 1.2rem;
+  color: #6c757d; /* Secondary text color */
+}
+
+#hero .btn-primary {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#hero .btn-outline-primary {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+#hero .image-section img {
+  width: 100%; /* Ensure the image takes full width of its container */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 400px; /* Limit the maximum height */
+  object-fit: cover; /* Ensure the image scales properly */
+}
+
+#hero .container {
+  display: flex;
+  align-items: stretch; /* Ensure both text and image stretch equally */
+}
+
+/* Adjust hero section image size for smaller screens */
+@media (max-width: 768px) {
+  #hero .text-section {
+    text-align: left; /* Align text to the left */
+  }
+
+  #hero .image-section img {
+    width: 80%; /* Reduce the width of the image */
+    max-height: 300px; /* Limit the maximum height for smaller screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image */
+    display: block; /* Ensure proper centering */
+  }
+
+  #hero .container {
+    flex-direction: column; /* Stack text and image vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+}
+
+/* Adjust hero section image size for screens with max-width 992px */
+@media (max-width: 992px) {
+  #hero .text-section {
+    text-align: left; /* Align text to the left */
+  }
+
+  #hero .image-section img {
+    width: 90%; /* Reduce the width of the image */
+    max-height: 350px; /* Limit the maximum height for tablet screens */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 auto; /* Center the image */
+    display: block; /* Ensure proper centering */
+  }
+
+  #hero .container {
+    flex-direction: column; /* Stack text and image vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+}
+
+/* Adjust hero section size for laptop screens */
+@media (min-width: 992px) and (max-width: 1200px) {
+  #hero {
+    padding: 3rem 0; /* Reduce padding for laptop screens */
+  }
+  #hero .text-section h1 {
+    font-size: 2.5rem; /* Adjust font size */
+  }
+  #hero .text-section p {
+    font-size: 1rem; /* Adjust paragraph font size */
+  }
+  #hero .image-section img {
+    max-width: 80%; /* Scale down the image */
+  }
+}
+
+/* How It Works section styles */
+#how-it-works {
+  padding: 3rem 0;
+  background-color: #f8f9fa; 
+}
+
+#how-it-works h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff; /* Blue text */
+}
+
+#how-it-works .step img {
+  height: 56px; /* Match the approximate height of the navbar */
+  width: auto; /* Maintain aspect ratio */
+  border-radius: 0; /* Ensure rectangular shape */
+  background-color: transparent; /* Remove background color */
+  padding: 0; /* Remove padding */
+}
+
+#how-it-works .step h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#how-it-works .step p {
+  font-size: 0.95rem;
+  color: #adb5bd; /* Muted text color */
+}
+
+#how-it-works .step h5:nth-child(1) {
+  color: #007bff; /* Blue */
+}
+
+#how-it-works .step h5:nth-child(2) {
+  color: #28a745; /* Green */
+}
+
+#how-it-works .step h5:nth-child(3) {
+  color: #6f42c1; /* Purple */
+}
+
+#how-it-works .step h5:nth-child(4) {
+  color: #e83e8c; /* Pink */
+}
+
+/* Feedback Carousel styles */
+#feedbackCarousel .carousel-control-prev,
+#feedbackCarousel .carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+}
+
+#feedbackCarousel .carousel-control-prev {
+  left: -100px; /* Adjust position to the left */
+}
+
+#feedbackCarousel .carousel-control-next {
+  right: -100px; /* Adjust position to the right */
+}
+
+#feedbackCarousel .bi-arrow-left-circle,
+#feedbackCarousel .bi-arrow-right-circle {
+  font-size: 2rem; /* Adjust icon size */
+  color: #6da2e8; /* Blue color for arrows */
+}
+
+#feedbackCarousel .bi-arrow-left-circle:hover,
+#feedbackCarousel .bi-arrow-right-circle:hover {
+  color: #75aae3; /* Darker blue on hover */
+}
+
+/* Carousel navigation arrows */
+.arrow {
+  display: inline-block;
+  background-color: #fff; /* White background */
+  color: #007bff; /* Blue arrow color */
+  padding: 0.5rem 1rem;
+  border-radius: 50%; /* Circular shape */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.5;
+  border: 2px solid #007bff; /* Blue border */
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  position: absolute; /* Position arrows absolutely */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for proper centering */
+  z-index: 10; /* Ensure arrows are above other elements */
+}
+
+.arrow:hover {
+  background-color: #007bff; /* Blue background on hover */
+  color: #fff; /* White text on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.arrow-left {
+  left: -50px; /* Position to the left of the carousel */
+}
+
+.arrow-right {
+  right: -50px; /* Position to the right of the carousel */
+}
+
+
