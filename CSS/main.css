@@ -661,4 +661,24 @@
   right: -50px; /* Position to the right of the carousel */
 }
 
+.card {
+  transition: transform 0.2s;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.card:hover {
+  transform: translateY(-5px);
+}
+
+#complaints-section .card {
+  min-height: 200px;
+}
+
+.nav-item {
+  transition: color 0.2s;
+}
+
+.nav-item:hover {
+  color: var(--bs-primary);
+}
