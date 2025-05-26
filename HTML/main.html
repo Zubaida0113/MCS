@@ -1,376 +1,384 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-          <img src="/assets/corporate-strategy_10178501.png" alt="Logo" class="me-2" style="height: 40px;">
-          <span>MCMS</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center" id="navbarnav">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Feedback</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">FAQs</a>
-            </li>
-          </ul>
-          <div class="d-flex justify-content-center justify-content-lg-end" id="auth-buttons">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="/assets/corporate-strategy_10178501.png" alt="Logo" class="me-2" style="height: 40px;">
+        <span>MCMS</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center" id="navbarnav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Feedback</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">FAQs</a>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-center justify-content-lg-end" id="auth-buttons">
+          <div id="signed-out-buttons">
             <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
             <a href="signup.html" class="btn btn-primary">Register</a>
-            <div id="welcome" style="display: none;"></div>
-            <button onclick="Clerk.signOut()">Logout</button>
+          </div>
+          <div id="signed-in-buttons" style="display: none;">
+            <div id="welcome" class="me-2"></div>
+            <button class="btn btn-outline-danger" onclick="handleSignOut()">Logout</button>
           </div>
         </div>
       </div>
-    </nav>
-    
-    <section id="hero" class="py-5 bg-light">
-      <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
-        <div class="text-section text-center text-lg-start">
-          <h1 class="display-5 fw-bold text-primary">Empowering Citizens.<br>Streamlining Grievances.</h1>
-          <p class="mt-3 text-secondary">
-            The Municipal Complaint Management System (MCMS) bridges the gap between citizens and the municipality, 
-            ensuring your voice is heard and your problems are solved efficiently.
-          </p>
-          <div class="mt-4">
-            <a href="#" class="btn btn-primary me-3">Submit a Complaint</a>
-            <a href="#" class="btn btn-outline-primary">Register / Login</a>
-          </div>
-        </div>
-        <div class="image-section mt-4 mt-lg-0">
-          <img src="../assets/freepik__the-style-is-candid-image-photography-with-natural__78153.jpeg" alt="Hero Image" class="img-fluid rounded">
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="py-5">
-      <div class="container">
-        <h2 class="text-center text-primary mb-4 ab">About Us</h2>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-primary">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Our Mission</h5>
-                <p class="card-text text-secondary">
-                  MCMS is dedicated to empowering citizens by providing a seamless platform for lodging complaints and improving municipal services.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-primary">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Our Vision</h5>
-                <p class="card-text text-secondary">
-                  We aim to create a transparent and accountable system that bridges the gap between citizens and local authorities.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm border-primary">
-              <div class="card-body">
-                <h5 class="card-title text-primary">Our Values</h5>
-                <p class="card-text text-secondary">
-                  Transparency, efficiency, and citizen satisfaction are at the core of everything we do.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how-it-works" class="py-5  text-light">
-      <div class="container">
-        <h2 class="text-center text-primary mb-5">How It Works</h2>
-        <div class="row text-center">
-          <div class="col-md-3">
-            <div class="step">
-              <img src="/assets/verified.png" alt="Register / Login" class="mb-3">
-              <h5 class="text-primary">1. Register / Login</h5>
-              <p class="text-muted">
-                Create an account or log in securely to access MCMS features.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="step">
-              <img src="/assets/complaint.png" alt="File a Complaint" class="mb-3">
-              <h5 class="text-secondary">2. File a Complaint</h5>
-              <p class="text-muted">
-                Fill out a quick form, upload media, and specify the issue location.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="step">
-              <img src="/assets/process_17412010.png" alt="Track Progress" class="mb-3">
-              <h5 class="text-primary">3. Track Progress</h5>
-              <p class="text-muted">
-                Monitor complaint status and receive timely notifications.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="step">
-              <img src="/assets/reputation_5759824.png" alt="Give Feedback" class="mb-3">
-              <h5 class="text-secondary">4. Give Feedback</h5>
-              <p class="text-muted">
-                Rate the resolution process and help improve municipal services.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div id="dynamic-content">
-      <!-- Role-specific content will be dynamically loaded here -->
     </div>
+  </nav>
 
-    <section id="feedback-carousel" class="py-5 bg-primary text-white">
-      <div class="container">
-        <h2 class="text-center mb-4">Feedbacks</h2>
-        <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">John Doe</h5>
-                      <p class="card-text">MCMS has made it so easy to file complaints and get them resolved quickly. Highly recommended!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Jane Smith</h5>
-                      <p class="card-text">The platform is user-friendly and efficient. I appreciate the transparency in the process.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Michael Brown</h5>
-                      <p class="card-text">Great initiative! It has bridged the gap between citizens and the municipality.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Emily Davis</h5>
-                      <p class="card-text">I love how easy it is to track the progress of my complaints. Excellent service!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Chris Wilson</h5>
-                      <p class="card-text">The response time is impressive. Kudos to the team for such a great platform!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Sophia Martinez</h5>
-                      <p class="card-text">MCMS has truly made a difference in how complaints are handled. Thank you!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Daniel Garcia</h5>
-                      <p class="card-text">The platform is intuitive and easy to use. Filing complaints has never been easier.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Olivia Rodriguez</h5>
-                      <p class="card-text">I appreciate the timely updates and notifications. Great job!</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card shadow-sm">
-                    <div class="card-body text-primary">
-                      <h5 class="card-title">Liam Hernandez</h5>
-                      <p class="card-text">The team behind MCMS is doing an amazing job. Keep up the good work!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#feedbackCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#feedbackCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+  <section id="hero" class="py-5 bg-light">
+    <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
+      <div class="text-section text-center text-lg-start">
+        <h1 class="display-5 fw-bold text-primary">Empowering Citizens.<br>Streamlining Grievances.</h1>
+        <p class="mt-3 text-secondary">
+          The Municipal Complaint Management System (MCMS) bridges the gap between citizens and the municipality,
+          ensuring your voice is heard and your problems are solved efficiently.
+        </p>
+        <div class="mt-4">
+          <a href="#" class="btn btn-primary me-3">Submit a Complaint</a>
+          <a href="#" class="btn btn-outline-primary">Register / Login</a>
         </div>
       </div>
-    </section>
+      <div class="image-section mt-4 mt-lg-0">
+        <img src="../assets/freepik__the-style-is-candid-image-photography-with-natural__78153.jpeg" alt="Hero Image"
+          class="img-fluid rounded">
+      </div>
+    </div>
+  </section>
 
-    <section id="faq" class="py-5 bg-white">
-      <div class="container">
-        <h2 class="text-center text-primary mb-4">FAQs</h2>
-        <div class="accordion" id="faqAccordion">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqHeading1">
-              <button class="accordion-button text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
-                What is MCMS?
-              </button>
-            </h2>
-            <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                MCMS stands for Municipal Complaint Management System, a platform to streamline grievance redressal for citizens.
-              </div>
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="text-center text-primary mb-4 ab">About Us</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-primary">
+            <div class="card-body">
+              <h5 class="card-title text-primary">Our Mission</h5>
+              <p class="card-text text-secondary">
+                MCMS is dedicated to empowering citizens by providing a seamless platform for lodging complaints and
+                improving municipal services.
+              </p>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqHeading2">
-              <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                How do I file a complaint?
-              </button>
-            </h2>
-            <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                You can file a complaint by registering or logging in, then filling out the complaint form with necessary details.
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-primary">
+            <div class="card-body">
+              <h5 class="card-title text-primary">Our Vision</h5>
+              <p class="card-text text-secondary">
+                We aim to create a transparent and accountable system that bridges the gap between citizens and local
+                authorities.
+              </p>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="faqHeading3">
-              <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                How can I track my complaint?
-              </button>
-            </h2>
-            <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">
-                After filing a complaint, you can track its progress through your dashboard, where updates will be provided.
-              </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-primary">
+            <div class="card-body">
+              <h5 class="card-title text-primary">Our Values</h5>
+              <p class="card-text text-secondary">
+                Transparency, efficiency, and citizen satisfaction are at the core of everything we do.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    
-    <section id="contact-us" class="py-5 bg-primary text-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 d-flex align-items-center">
-            <h2>Contact Us</h2>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="py-5  text-light">
+    <div class="container">
+      <h2 class="text-center text-primary mb-5">How It Works</h2>
+      <div class="row text-center">
+        <div class="col-md-3">
+          <div class="step">
+            <img src="/assets/verified.png" alt="Register / Login" class="mb-3">
+            <h5 class="text-primary">1. Register / Login</h5>
+            <p class="text-muted">
+              Create an account or log in securely to access MCMS features.
+            </p>
           </div>
-          <div class="col-md-6">
-            <p class="mb-2"><strong>Phone:</strong> +1 234 567 890</p>
-            <p class="mb-2"><strong>Email:</strong> contact@mcms.com</p>
-            <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+        </div>
+        <div class="col-md-3">
+          <div class="step">
+            <img src="/assets/complaint.png" alt="File a Complaint" class="mb-3">
+            <h5 class="text-secondary">2. File a Complaint</h5>
+            <p class="text-muted">
+              Fill out a quick form, upload media, and specify the issue location.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step">
+            <img src="/assets/process_17412010.png" alt="Track Progress" class="mb-3">
+            <h5 class="text-primary">3. Track Progress</h5>
+            <p class="text-muted">
+              Monitor complaint status and receive timely notifications.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="step">
+            <img src="/assets/reputation_5759824.png" alt="Give Feedback" class="mb-3">
+            <h5 class="text-secondary">4. Give Feedback</h5>
+            <p class="text-muted">
+              Rate the resolution process and help improve municipal services.
+            </p>
           </div>
         </div>
       </div>
-    </section>
-    <footer class="bg-light text-muted py-4">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 d-flex align-items-center">
-            <img src="/assets/corporate-strategy_10178501.png" alt="Logo" style="height: 40px;" class="me-2">
-            <span> MCMS</span>
+    </div>
+  </section>
+
+  <div id="dynamic-content">
+    <!-- Role-specific content will be dynamically loaded here -->
+  </div>
+
+  <section id="feedback-carousel" class="py-5 bg-primary text-white">
+    <div class="container">
+      <h2 class="text-center mb-4">Feedbacks</h2>
+      <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">John Doe</h5>
+                    <p class="card-text">MCMS has made it so easy to file complaints and get them resolved quickly.
+                      Highly recommended!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Jane Smith</h5>
+                    <p class="card-text">The platform is user-friendly and efficient. I appreciate the transparency in
+                      the process.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Michael Brown</h5>
+                    <p class="card-text">Great initiative! It has bridged the gap between citizens and the municipality.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-6 text-md-end">
-            <a href="#" class="text-muted me-3"><i class="bi bi-twitter"></i></a>
-            <a href="#" class="text-muted me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-muted me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-muted"><i class="bi bi-github"></i></a>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Emily Davis</h5>
+                    <p class="card-text">I love how easy it is to track the progress of my complaints. Excellent
+                      service!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Chris Wilson</h5>
+                    <p class="card-text">The response time is impressive. Kudos to the team for such a great platform!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Sophia Martinez</h5>
+                    <p class="card-text">MCMS has truly made a difference in how complaints are handled. Thank you!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Daniel Garcia</h5>
+                    <p class="card-text">The platform is intuitive and easy to use. Filing complaints has never been
+                      easier.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Olivia Rodriguez</h5>
+                    <p class="card-text">I appreciate the timely updates and notifications. Great job!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm">
+                  <div class="card-body text-primary">
+                    <h5 class="card-title">Liam Hernandez</h5>
+                    <p class="card-text">The team behind MCMS is doing an amazing job. Keep up the good work!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col text-center">
-            <a href="#" class="text-muted me-3">Home</a>
-            <a href="#" class="text-muted me-3">Features</a>
-            <a href="#" class="text-muted me-3">Pricing</a>
-            <a href="#" class="text-muted me-3">FAQs</a>
-            <a href="#" class="text-muted">About</a>
+        <button class="carousel-control-prev" type="button" data-bs-target="#feedbackCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#feedbackCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-5 bg-white">
+    <div class="container">
+      <h2 class="text-center text-primary mb-4">FAQs</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading1">
+            <button class="accordion-button text-primary" type="button" data-bs-toggle="collapse"
+              data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+              What is MCMS?
+            </button>
+          </h2>
+          <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
+            data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              MCMS stands for Municipal Complaint Management System, a platform to streamline grievance redressal for
+              citizens.
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col text-center mt-3">
-            <span>All copyrights reserved &copy; 2025 MCMS</span>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading2">
+            <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse"
+              data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+              How do I file a complaint?
+            </button>
+          </h2>
+          <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+            data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              You can file a complaint by registering or logging in, then filling out the complaint form with necessary
+              details.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading3">
+            <button class="accordion-button collapsed text-primary" type="button" data-bs-toggle="collapse"
+              data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+              How can I track my complaint?
+            </button>
+          </h2>
+          <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+            data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              After filing a complaint, you can track its progress through your dashboard, where updates will be
+              provided.
+            </div>
           </div>
         </div>
       </div>
-    </footer>
-    
-   
-    <script
-  async
-  crossorigin="anonymous"
-  data-clerk-publishable-key="pk_test_ZW5vcm1vdXMtcGVhY29jay04My5jbGVyay5hY2NvdW50cy5kZXYk"
-  src="https://enormous-peacock-83.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
-  type="text/javascript">
-</script>
-<script>
-  window.addEventListener('load', async function () {
-    await Clerk.load()
+    </div>
+  </section>
 
-    console.log('ClerkJS is loaded')
-  })
-</script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  <section id="contact-us" class="py-5 bg-primary text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 d-flex align-items-center">
+          <h2>Contact Us</h2>
+        </div>
+        <div class="col-md-6">
+          <p class="mb-2"><strong>Phone:</strong> +1 234 567 890</p>
+          <p class="mb-2"><strong>Email:</strong> contact@mcms.com</p>
+          <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="bg-light text-muted py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 d-flex align-items-center">
+          <img src="/assets/corporate-strategy_10178501.png" alt="Logo" style="height: 40px;" class="me-2">
+          <span> MCMS</span>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="text-muted me-3"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-muted me-3"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-muted me-3"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-muted"><i class="bi bi-github"></i></a>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col text-center">
+          <a href="#" class="text-muted me-3">Home</a>
+          <a href="#" class="text-muted me-3">Features</a>
+          <a href="#" class="text-muted me-3">Pricing</a>
+          <a href="#" class="text-muted me-3">FAQs</a>
+          <a href="#" class="text-muted">About</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center mt-3">
+          <span>All copyrights reserved &copy; 2025 MCMS</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-      window.addEventListener("load", async () => {
-        await Clerk.load();
-    
-        if (Clerk.user) {
-          document.getElementById("welcome").style.display = "block";
-          document.getElementById("welcome").innerText = 
-            "Welcome, " + Clerk.user.fullName;
-        }
-      });
+
+  <script async crossorigin="anonymous"
+    data-clerk-publishable-key="pk_test_ZW5vcm1vdXMtcGVhY29jay04My5jbGVyay5hY2NvdW50cy5kZXYk"
+    src="https://enormous-peacock-83.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+    type="text/javascript">
     </script>
-    
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+  <script src="/JS/main.js"></script>
+</body>
+
 </html>

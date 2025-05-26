@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sign Up</title>
 </head>
 
 <body>
     <div id="app">
-        <H1>HI</H1>
         <div id="sign-up"></div>
     </div>
 
@@ -18,15 +17,19 @@
         data-clerk-publishable-key="pk_test_ZW5vcm1vdXMtcGVhY29jay04My5jbGVyay5hY2NvdW50cy5kZXYk"
         src="https://enormous-peacock-83.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
         type="text/javascript">
-        </script>
+    </script>
 
-    <script type="module">
-        const clerk = new Clerk('data-clerk-publishable-key')
-        await clerk.load()
-
-        // Mount the signup component to a div
-        const signUpDiv = document.getElementById('sign-up')
-        clerk.mountSignUp(signUpDiv)
+    <script type="text/javascript">
+        window.addEventListener('load', async function() {
+            try {
+                // Use Clerk from window object after it loads
+                await window.Clerk.load();
+                const signUpDiv = document.getElementById('sign-up');
+                window.Clerk.mountSignUp(signUpDiv);
+            } catch (error) {
+                console.error('Error initializing Clerk:', error);
+            }
+        });
     </script>
 </body>
 
