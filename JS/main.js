@@ -102,3 +102,33 @@ async function handleSignOut() {
 
 // Make handleSignOut available globally
 window.handleSignOut = handleSignOut;
+
+// Add this function for smooth scrolling
+function scrollToAbout(event) {
+    event.preventDefault();
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+        aboutSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+}
+
+// Make it globally available
+window.scrollToAbout = scrollToAbout;
+
+// Add event listeners for smooth scrolling
+document.querySelectorAll('a.nav-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1); // Remove the '#' from href
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            console.log(`Scrolling to: ${targetId}`); // Debugging log
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            console.error(`Element with ID '${targetId}' not found.`);
+        }
+    });
+});

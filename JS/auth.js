@@ -15,11 +15,11 @@ window.addEventListener('load', async function () {
       const signInDiv = document.getElementById('sign-in')
       Clerk.mountSignIn(signInDiv, {
         // Optional: Configure sign-in options
-        routing: "path",
-        signInUrl: "../HTML/main.html",
-        afterSignInUrl: "../HTML/resident/dashboard.html",
-        afterSignOutUrl: "../HTML/main.html", // Add this line for logout redirect
-        signUpUrl: "../HTML/signup.html"
+        // routing: "path",
+        // signInUrl: "../HTML/main.html",
+        // afterSignInUrl: "../HTML/resident/dashboard.html",
+        // afterSignOutUrl: "../HTML/main.html", // Add this line for logout redirect
+        // signUpUrl: "../HTML/signup.html"
             
     });
       Clerk.mountSignIn(signInDiv)

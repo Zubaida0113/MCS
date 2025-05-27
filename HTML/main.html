@@ -25,19 +25,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center" id="navbarnav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="#hero">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Feedback</a>
+            <a class="nav-link" href="#feedback-carousel">Feedback</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#contact-us">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">FAQs</a>
+            <a class="nav-link" href="#faq">FAQs</a>
           </li>
         </ul>
         <div class="d-flex justify-content-center justify-content-lg-end" id="auth-buttons">
@@ -405,6 +405,21 @@
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
   <script src="/JS/main.js"></script>
+  <script>
+    document.querySelectorAll('a.nav-link').forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          console.log(`Scrolling to: ${targetId}`); // Debugging log
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          console.error(`Element with ID '${targetId}' not found.`);
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>
