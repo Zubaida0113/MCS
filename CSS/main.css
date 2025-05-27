@@ -9,9 +9,11 @@ html {
 .navbar{
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle bottom shadow */
+   
 }
 /* Customize the navbar background color */
 .navbar {
+  
   background-color: #f8f9fa !important; /* Light gray background */
   padding: 0.8rem 2rem; /* Add padding to leave space on left and right ends */
 }

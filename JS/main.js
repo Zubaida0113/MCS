@@ -27,19 +27,19 @@ window.addEventListener("load", async () => {
             // Update navigation for authenticated users
             nav.innerHTML = `
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#complaints">My Complaints</a>
+                    <a class="nav-link" href="#complaints-section">My Complaints</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#track">Track Complaint</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#contact-us">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">FAQs</a>
+                    <a class="nav-link" href="#faq">FAQs</a>
                 </li>
             `;
         } else {
@@ -52,19 +52,19 @@ window.addEventListener("load", async () => {
             // Update navigation for non-authenticated users
             nav.innerHTML = `
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Feedback</a>
+                    <a class="nav-link" href="#about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="#feedback-carousel">Feedback</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">FAQs</a>
+                    <a class="nav-link" href="#contact-us">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#faq">FAQs</a>
                 </li>
             `;
         }
