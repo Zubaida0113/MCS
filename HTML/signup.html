@@ -4,14 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Sign Up - MCMS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .signup-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .navigation-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        #app {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app">
-        <div id="sign-up"></div>
+    <div class="signup-container">
+        <div id="app">
+            <div id="sign-up"></div>
+        </div>
+        
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <a href="main.html" class="btn btn-secondary">
+                <i class="bi bi-house-fill"></i> Home
+            </a>
+            <button onclick="history.back()" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> Back
+            </button>
+        </div>
     </div>
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
     <!-- Load Clerk library first -->
     <script async crossorigin="anonymous"
         data-clerk-publishable-key="pk_test_ZW5vcm1vdXMtcGVhY29jay04My5jbGVyay5hY2NvdW50cy5kZXYk"
@@ -22,7 +61,6 @@
     <script type="text/javascript">
         window.addEventListener('load', async function() {
             try {
-                // Use Clerk from window object after it loads
                 await window.Clerk.load();
                 const signUpDiv = document.getElementById('sign-up');
                 window.Clerk.mountSignUp(signUpDiv);
@@ -31,6 +69,9 @@
             }
         });
     </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
