@@ -78,111 +78,37 @@
     </div>
 
     <script>
-        document.getElementById("complaint-form").addEventListener("submit", async function(event) {
+        document.getElementById("complaint-form").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Validate form fields
-            const name = document.getElementById("complainant-name");
-            const office = document.getElementById("office-address");
-            const locality = document.getElementById("locality-address");
-            const type = document.getElementById("complaint-type");
-            const description = document.getElementById("complaint-description");
-            const evidence = document.getElementById("evidence-file");
+            const name = document.getElementById("complainant-name").value;
+            const office = document.getElementById("office-address").value;
+            const locality = document.getElementById("locality-address").value;
+            const type = document.getElementById("complaint-type").value;
+            const description = document.getElementById("complaint-description").value;
 
-            let isValid = true;
+            // Generate a unique complaint ID
+            const complaintId = `COMP-${Date.now().toString().slice(-6)}`;
 
-            if (!name.value.trim()) {
-                name.classList.add("is-invalid");
-                name.nextElementSibling.textContent = "Name is required.";
-                isValid = false;
-            } else {
-                name.classList.remove("is-invalid");
-            }
+            const complaintData = {
+                id: complaintId,
+                name,
+                office,
+                locality,
+                type,
+                description,
+                status: "Pending",
+                timestamp: new Date().toISOString()
+            };
 
-            if (!office.value) {
-                office.classList.add("is-invalid");
-                office.nextElementSibling.textContent = "Please select an office.";
-                isValid = false;
-            } else {
-                office.classList.remove("is-invalid");
-            }
+            // Save complaint to localStorage
+            const complaints = JSON.parse(localStorage.getItem("complaints") || "[]");
+            complaints.push(complaintData);
+            localStorage.setItem("complaints", JSON.stringify(complaints));
 
-            if (!locality.value) {
-                locality.classList.add("is-invalid");
-                locality.nextElementSibling.textContent = "Please select your locality Municipal office.";
-                isValid = false;
-            } else {
-                locality.classList.remove("is-invalid");
-            }
-
-            if (!type.value) {
-                type.classList.add("is-invalid");
-                type.nextElementSibling.textContent = "Please select a complaint type.";
-                isValid = false;
-            } else {
-                type.classList.remove("is-invalid");
-            }
-
-            if (!description.value.trim()) {
-                description.classList.add("is-invalid");
-                description.nextElementSibling.textContent = "Complaint description is required.";
-                isValid = false;
-            } else {
-                description.classList.remove("is-invalid");
-            }
-
-            if (!isValid) {
-                return; // Stop submission if the form is invalid
-            }
-
-            try {
-                // Show loading state
-                const submitButton = this.querySelector('button[type="submit"]');
-                submitButton.disabled = true;
-                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
-
-                // Create complaint object
-                const complaintData = {
-                    name: name.value,
-                    office: office.value,
-                    locality: locality.value,
-                    type: type.value,
-                    description: description.value,
-                    timestamp: new Date().toISOString(),
-                    status: 'Pending',
-                    complaintId: generateComplaintId()
-                };
-
-                // Store in localStorage for demo
-                const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
-                complaints.push(complaintData);
-                localStorage.setItem('complaints', JSON.stringify(complaints));
-
-                // Show success message
-                const successHtml = `
-                    <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">Complaint Submitted Successfully!</h4>
-                        <p>Your complaint ID is: ${complaintData.complaintId}</p>
-                        <p>You can track your complaint status using this ID.</p>
-                        <hr>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="trackcomplaints.html" class="btn btn-primary">Track Complaint</a>
-                            <a href="main.html" class="btn btn-secondary">Back to Home</a>
-                        </div>
-                    </div>
-                `;
-                
-                this.innerHTML = successHtml;
-
-            } catch (error) {
-                console.error('Error submitting complaint:', error);
-                alert('An error occurred while submitting your complaint. Please try again.');
-            }
+            alert(`Complaint submitted successfully! Your complaint ID is: ${complaintData.id}`);
+            this.reset();
         });
-
-        function generateComplaintId() {
-            return 'COMP-' + Date.now().toString().slice(-6);
-        }
     </script>
 </body>
 </html>

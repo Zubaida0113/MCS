@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 const fs = require('fs').promises;
 const path = require('path');
 const app = express();
@@ -9,20 +10,30 @@ app.use(express.static(path.join(__dirname, 'HTML')));
 app.use(express.static(path.join(__dirname, 'JS')));
 app.use(express.static(path.join(__dirname, 'CSS')));
 
+// Nodemailer transporter setup
+const transporter = nodemailer.createTransport({
+    service: 'gmail', // Use your email service provider
+    auth: {
+        user: 'your-email@gmail.com', // Replace with your email
+        pass: 'your-email-password'  // Replace with your email password or app password
+    }
+});
+
 // Handle complaint submission
 app.post('/api/complaints', async (req, res) => {
     try {
+        const { name, office, locality, type, description, complaintId } = req.body;
+
+        // Save complaint to file
         const dataDir = path.join(__dirname, 'data');
         const filePath = path.join(dataDir, 'complaints.json');
 
-        // Create data directory if it doesn't exist
         try {
             await fs.access(dataDir);
         } catch {
             await fs.mkdir(dataDir);
         }
 
-        // Create or read complaints file
         let data;
         try {
             const fileData = await fs.readFile(filePath, 'utf8');
@@ -30,21 +41,45 @@ app.post('/api/complaints', async (req, res) => {
         } catch {
             data = { complaints: [] };
         }
-        
+
         const newComplaint = {
-            id: `COMP-${Date.now()}`,
+            id: complaintId || `COMP-${Date.now()}`,
             timestamp: new Date().toISOString(),
             status: 'Pending',
-            ...req.body
+            name,
+            office,
+            locality,
+            type,
+            description
         };
-        
+
         data.complaints.push(newComplaint);
         await fs.writeFile(filePath, JSON.stringify(data, null, 2));
-        
-        res.json(newComplaint);
+
+        // Send email to admin
+        const adminEmail = `${office.toLowerCase().replace(/\s+/g, '')}@mcms.com`; // Example email format
+        const mailOptions = {
+            from: 'your-email@gmail.com', // Replace with your email
+            to: adminEmail,
+            subject: `New Complaint Submitted: ${newComplaint.id}`,
+            text: `
+                A new complaint has been submitted:
+                - Complaint ID: ${newComplaint.id}
+                - Name: ${name}
+                - Office: ${office}
+                - Locality: ${locality}
+                - Type: ${type}
+                - Description: ${description}
+                - Status: Pending
+            `
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.json({ success: true, complaintId: newComplaint.id });
     } catch (error) {
-        console.error('Error saving complaint:', error);
-        res.status(500).json({ error: 'Failed to save complaint' });
+        console.error('Error saving complaint or sending email:', error);
+        res.status(500).json({ error: 'Failed to save complaint or send email' });
     }
 });
 
@@ -58,7 +93,6 @@ app.get('/api/complaints', async (req, res) => {
     } catch (error) {
         console.error('Error reading complaints:', error);
         if (error.code === 'ENOENT') {
-            // If file doesn't exist, return empty complaints array
             res.json({ complaints: [] });
         } else {
             res.status(500).json({ error: 'Failed to fetch complaints' });

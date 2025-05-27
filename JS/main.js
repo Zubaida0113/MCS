@@ -63,7 +63,7 @@ function openComplaintForm() {
         window.location.href = '/HTML/login.html';
         return;
     }
-    window.location.href = '/complaints/new.html';
+    window.location.href = '/HTML/complaint.html';
 }
 
 function viewComplaints() {
@@ -71,7 +71,7 @@ function viewComplaints() {
         window.location.href = '/HTML/login.html';
         return;
     }
-    window.location.href = '/complaints/history.html';
+    window.location.href = '/HTML/trackcomplaints.html';
 }
 
 async function handleSignOut() {
