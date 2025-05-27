@@ -37,10 +37,10 @@
                 <label for="locality-address" class="form-label">Select Your Locality Municipal Office</label>
                 <select class="form-select" id="locality-address" required>
                     <option value="" disabled selected>Select your Local Municipal Office</option>
-                    <option value="Downtown Municipal Office">Sector-15 Noida</option>
-                    <option value="Uptown Municipal Office">Sector-12 Noida</option>
-                    <option value="Eastside Municipal Office">Beta, Parichowk, Greater Noida</option>
-                    <option value="Westside Municipal Office">Sector-144 Noida</option>
+                    <option value="Sector-15 Noida">Sector-15 Noida</option>
+                    <option value="Sector-12 Noida">Sector-12 Noida</option>
+                    <option value="Beta, Parichowk, Greater Noida">Beta, Parichowk, Greater Noida</option>
+                    <option value="Sector-144 Noida">Sector-144 Noida</option>
                 </select>
                 <div class="invalid-feedback">Please select your locality Municipal office.</div>
             </div>
@@ -76,6 +76,18 @@
             <button type="submit" class="btn btn-primary w-100">Submit Complaint</button>
         </form>
     </div>
+   <!-- Navigation Buttons -->
+   <div class="navigation-buttons">
+    <a href="main.html" class="btn btn-secondary">
+        <i class="bi bi-house-fill"></i> Home
+    </a>
+    <button onclick="history.back()" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </button>
+</div>
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
     <script>
         document.getElementById("complaint-form").addEventListener("submit", function(event) {
