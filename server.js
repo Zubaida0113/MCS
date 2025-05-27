@@ -5,9 +5,9 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(express.static('HTML'));  // Serve HTML files
-app.use(express.static('JS'));    // Serve JS files
-app.use(express.static('CSS'));   // Serve CSS files
+app.use(express.static(path.join(__dirname, 'HTML')));
+app.use(express.static(path.join(__dirname, 'JS')));
+app.use(express.static(path.join(__dirname, 'CSS')));
 
 // Handle complaint submission
 app.post('/api/complaints', async (req, res) => {
@@ -56,8 +56,13 @@ app.get('/api/complaints', async (req, res) => {
         const data = JSON.parse(fileData);
         res.json(data);
     } catch (error) {
-        console.error('Error fetching complaints:', error);
-        res.status(500).json({ error: 'Failed to fetch complaints' });
+        console.error('Error reading complaints:', error);
+        if (error.code === 'ENOENT') {
+            // If file doesn't exist, return empty complaints array
+            res.json({ complaints: [] });
+        } else {
+            res.status(500).json({ error: 'Failed to fetch complaints' });
+        }
     }
 });
 
