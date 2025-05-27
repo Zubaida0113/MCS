@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "@clerk/clerk-js": "^5.67.3"
-  }
+    "@clerk/clerk-js": "^5.67.3",
+    "express": "^5.1.0"
+  },
+  "name": "mcs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zubaida0113/MCS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zubaida0113/MCS/issues"
+  },
+  "homepage": "https://github.com/Zubaida0113/MCS#readme"
 }

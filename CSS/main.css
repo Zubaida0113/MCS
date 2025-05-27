@@ -87,6 +87,11 @@ html {
   border-color: #007bff; /* Blue border on hover */
 }
 
+.btn-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
 /* Home section styles */
 #home {
   background-color: #f8f9fa;
@@ -349,4 +354,25 @@ html {
 
 .nav-item:hover {
   color: var(--bs-primary);
+}
+
+.card-body.me-5.d-flex.flex-column.align-items-center {
+  justify-content: space-evenly !important;
+}
+
+.welcome{
+  color: #003366; /* Dark blue */
+  font-size: 1.5rem; /* Increase font size */
+  font-weight: bold; /* Optional: Make the text bold */
+}
+
+.alert {
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
 }

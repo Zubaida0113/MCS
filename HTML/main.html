@@ -73,34 +73,72 @@
       </div>
     </div>
   </section>
-
-  <!-- Add this after the hero section -->
-<section id="complaints-section" class="py-5" style="display: none;">
-  <div class="container">
-    <h2 class="text-center mb-4">Complaint Management</h2>
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Submit New Complaint</h5>
-            <p class="card-text">Lodge a new complaint about municipal issues.</p>
-            <button class="btn btn-primary" onclick="openComplaintForm()">New Complaint</button>
+  <section id="profile-section" class="py-5" style="display: none;">
+    <div class="container">
+      <h2 class="text-center mb-4">Profile Details</h2>
+      <div class="card mx-auto" style="max-width: 1000px;">
+        <div class="card-body d-flex align-items-center" style="justify-content: space-evenly;">
+          <!-- Profile Picture -->
+          <div class="text-center me-5 d-flex flex-column align-items-center">
+            <img id="profile-pic" src="/assets/profile_4372360.png" alt="Profile Picture" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+            <label for="file-input" class="btn btn-outline-primary btn-sm mt-2">Change Picture</label>
+            <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="previewProfilePicture(event)">
+            <button class="btn btn-primary btn-sm mt-2" onclick="saveProfilePicture()">Save</button>
           </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Track Complaints</h5>
-            <p class="card-text">View and track status of your existing complaints.</p>
-            <button class="btn btn-outline-primary" onclick="viewComplaints()">View History</button>
+          <!-- Profile Details -->
+          <div>
+            <div class="mb-3">
+              <label for="profile-name" class="form-label">Name:</label>
+              <p id="profile-name" class="form-control-plaintext"></p>
+            </div>
+            <div class="mb-3">
+              <label for="profile-role" class="form-label">Role:</label>
+              <p id="profile-role" class="form-control-plaintext"></p>
+            </div>
+            <div class="mb-3">
+              <label for="profile-location" class="form-label">Location:</label>
+              <p id="profile-location" class="form-control-plaintext"></p>
+              <button class="btn btn-outline-primary btn-sm mt-2" onclick="fetchLocation()">Use Current Location</button>
+            </div>
+            <div class="mb-3">
+              <label for="profile-phone" class="form-label">Phone:</label>
+              <p id="profile-phone" class="form-control-plaintext"></p>
+            </div>
+            <button class="btn btn-outline-primary" id="edit-button" onclick="toggleEdit(true)">Edit</button>
+            <button class="btn btn-primary" id="save-button" onclick="toggleEdit(false)" style="display: none;">Save Changes</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section id="complaints-section" class="py-5" style="display: none;">
+    <div class="container">
+      <h2 class="text-center mb-4">Complaint Management</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Submit New Complaint</h5>
+              <p class="card-text">Lodge a new complaint about municipal issues.</p>
+              <button class="btn btn-primary" onclick="openComplaintForm()">New Complaint</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Track Complaints</h5>
+              <p class="card-text">View and track status of your existing complaints.</p>
+              <button class="btn btn-outline-primary" onclick="viewComplaints()">View History</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
   <section id="about" class="py-5">
     <div class="container">
       <h2 class="text-center text-primary mb-4 ab">About Us</h2>
@@ -420,6 +458,7 @@
         }
       });
     });
+
   </script>
 </body>
 

@@ -59,11 +59,32 @@
     </script>
 
     <script type="text/javascript">
+        
         window.addEventListener('load', async function() {
             try {
                 await window.Clerk.load();
                 const signUpDiv = document.getElementById('sign-up');
-                window.Clerk.mountSignUp(signUpDiv);
+                
+                // Add role selection before mounting
+                const roleSelection = document.createElement('div');
+                roleSelection.innerHTML = `
+                    <label>Select Role:</label>
+                    <select id="role-select">
+                        <option value="resident">Resident</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                `;
+                signUpDiv.parentNode.insertBefore(roleSelection, signUpDiv);
+                
+                window.Clerk.mountSignUp(signUpDiv, {
+                    afterSignUpUrl: "/HTML/main.html", // Redirect to main page after sign-up
+                    afterSignInUrl: "/HTML/main.html", // Redirect to main page after sign-in
+                    signUpUrl: "/HTML/signup.html",
+                    unsafeMetadata: {
+                        role: document.getElementById('role-select')?.value || 'resident'
+                    }
+                });
+                
             } catch (error) {
                 console.error('Error initializing Clerk:', error);
             }
