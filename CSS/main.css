@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
 }
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* For Safari support */
+}
 .navbar{
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle bottom shadow */
@@ -104,6 +108,9 @@
   background-color: #007bff; /* Blue background */
   border: 2px solid #0056b3; /* Darker blue border */
   color: #fff; /* White text */
+  scroll-margin-top: 80px; /* For fixed navbar */
+    -webkit-scroll-margin-top: 80px; /* For Safari support */
+
 }
 .ab{
     font-size: 2.5rem;
