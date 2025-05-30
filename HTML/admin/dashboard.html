@@ -54,6 +54,48 @@
     </div>
   </nav>
 
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Admin Profile</h2>
+    <div class="card mx-auto" style="max-width: 800px;">
+      <div class="card-body d-flex align-items-center" style="justify-content: space-evenly;">
+        <!-- Profile Picture -->
+        <div class="text-center me-5 d-flex flex-column align-items-center">
+          <img id="admin-profile-pic" src="/assets/profile_4372360.png" alt="Profile Picture"
+            class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+          <label for="admin-file-input" id="admin-change-picture-btn" class="btn btn-outline-primary btn-sm mt-2"
+            style="display: none;">Change Picture</label>
+          <input type="file" id="admin-file-input" accept="image/*" style="display: none;"
+            onchange="previewAdminProfilePicture(event)">
+        </div>
+        <!-- Profile Details -->
+        <div>
+          <div class="mb-3 d-flex align-items-center">
+            <span class="profile-label me-2">Name:</span>
+            <p id="admin-profile-name" class="profile-value mb-0">Admin Name</p>
+          </div>
+          <div class="mb-3 d-flex align-items-center">
+            <span class="profile-label me-2">Role:</span>
+            <p id="admin-profile-role" class="profile-value mb-0">Admin</p>
+          </div>
+          <div class="mb-3 d-flex align-items-center">
+            <span class="profile-label me-2">Office:</span>
+            <p id="admin-profile-office" class="profile-value mb-0">Not Assigned</p>
+            <select id="admin-office-dropdown" class="form-select" style="display: none;">
+              <option value="" disabled selected>Select Office</option>
+              <option value="Water Department">Water Department</option>
+              <option value="Electricity Department">Electricity Department</option>
+              <option value="Sanitation Department">Sanitation Department</option>
+              <option value="Roads and Transport">Roads and Transport</option>
+            </select>
+          </div>
+          <button class="btn btn-outline-primary" id="admin-edit-button" onclick="toggleAdminEdit(true)">Edit</button>
+          <button class="btn btn-primary" id="admin-save-button" onclick="toggleAdminEdit(false)"
+            style="display: none;">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="bg-light text-muted py-4">
     <div class="container">
       <div class="row align-items-center">
@@ -86,7 +128,6 @@
     </div>
   </footer>
 
-
   <script async crossorigin="anonymous"
     data-clerk-publishable-key="pk_test_ZW5vcm1vdXMtcGVhY29jay04My5jbGVyay5hY2NvdW50cy5kZXYk"
     src="https://enormous-peacock-83.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
@@ -111,6 +152,54 @@
       });
     });
 
+    function toggleAdminEdit(isEditable) {
+      const nameField = document.getElementById("admin-profile-name");
+      const officeField = document.getElementById("admin-profile-office");
+      const officeDropdown = document.getElementById("admin-office-dropdown");
+      const changePictureBtn = document.getElementById("admin-change-picture-btn");
+
+      if (isEditable) {
+        // Convert fields to input or dropdown
+        nameField.outerHTML = `<input type="text" id="admin-profile-name" class="form-control me-2" value="${nameField.innerText}">`;
+        officeField.style.display = "none";
+        officeDropdown.style.display = "block";
+
+        // Show Change Picture button
+        changePictureBtn.style.display = "inline-block";
+
+        // Toggle buttons
+        document.getElementById("admin-edit-button").style.display = "none";
+        document.getElementById("admin-save-button").style.display = "inline-block";
+      } else {
+        // Convert input fields back to plain text
+        const nameInput = document.getElementById("admin-profile-name");
+        const officeValue = officeDropdown.value || officeField.innerText;
+
+        nameInput.outerHTML = `<p id="admin-profile-name" class="profile-value mb-0">${nameInput.value}</p>`;
+        officeField.innerText = officeValue;
+        officeField.style.display = "block";
+        officeDropdown.style.display = "none";
+
+        // Hide Change Picture button
+        changePictureBtn.style.display = "none";
+
+        // Toggle buttons
+        document.getElementById("admin-edit-button").style.display = "inline-block";
+        document.getElementById("admin-save-button").style.display = "none";
+      }
+    }
+
+    function previewAdminProfilePicture(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const profilePic = document.getElementById("admin-profile-pic");
+          profilePic.src = e.target.result; // Set the selected image as the profile picture
+        };
+        reader.readAsDataURL(file);
+      }
+    }
   </script>
 </body>
 

@@ -59,7 +59,6 @@
     </script>
 
     <script type="text/javascript">
-        
         window.addEventListener('load', async function() {
             try {
                 await window.Clerk.load();
@@ -70,21 +69,22 @@
                 roleSelection.innerHTML = `
                     <label>Select Role:</label>
                     <select id="role-select">
-                        <option value="resident">Resident</option>
-                        <option value="admin">Admin</option>
+                        <option value="Resident">Resident</option>
+                        <option value="Admin">Admin</option>
                     </select>
                 `;
                 signUpDiv.parentNode.insertBefore(roleSelection, signUpDiv);
-                
+
                 window.Clerk.mountSignUp(signUpDiv, {
-                    afterSignUpUrl: "/HTML/main.html", // Redirect to main page after sign-up
-                    afterSignInUrl: "/HTML/main.html", // Redirect to main page after sign-in
+                    afterSignUpUrl: "/HTML/main.html", // Default redirect
+                    afterSignInUrl: "/HTML/main.html", // Default redirect
                     signUpUrl: "/HTML/signup.html",
-                    unsafeMetadata: {
-                        role: document.getElementById('role-select')?.value || 'resident'
+                    prefill: {
+                        unsafeMetadata: {
+                            role: () => document.getElementById('role-select').value // Dynamically set role
+                        }
                     }
                 });
-                
             } catch (error) {
                 console.error('Error initializing Clerk:', error);
             }
