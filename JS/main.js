@@ -1,4 +1,4 @@
-const { Clerk } = require("@clerk/clerk-js");
+
 
 window.addEventListener("load", async () => {
     try {
@@ -20,12 +20,17 @@ window.addEventListener("load", async () => {
             signedOutButtons.style.display = "none";
             signedInButtons.style.display = "flex";
             // welcomeDiv.innerText = `Welcome`;
+            profileSection.style.display = "block";
             heroSection.style.display = "none";
             aboutSection.style.display = "none";
             worksSection.style.display = "none";
             feedbackSection.style.display = "none";
             complaintsSection.style.display = "block";
 
+            // Load profile data
+            document.getElementById("name-view").textContent = Clerk.user.fullName || '';
+            document.getElementById("role-view").textContent = Clerk.user.publicMetadata.role || 'Resident';
+            
             // Show profile section for specific roles
             const role = Clerk.user.unsafeMetadata.role || "Resident";
             if (role === "Resident" || role === "Admin") {
