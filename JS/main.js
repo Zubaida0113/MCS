@@ -13,6 +13,8 @@ window.addEventListener("load", async () => {
         const feedbackSection = document.getElementById("feedback-carousel");
         const complaintsSection = document.getElementById("complaints-section");
         const profileSection = document.getElementById("profile-section");
+        // const adminprofileSection = document.getElementById("admin-profile-section");
+        const adminSection = document.getElementById("admin-profile");
 
         // Check authentication state
         if (Clerk.user) {
@@ -26,15 +28,18 @@ window.addEventListener("load", async () => {
             worksSection.style.display = "none";
             feedbackSection.style.display = "none";
             complaintsSection.style.display = "block";
+            adminSection.style.display = "none";
 
             // Load profile data
             document.getElementById("name-view").textContent = Clerk.user.fullName || '';
-            document.getElementById("role-view").textContent = Clerk.user.publicMetadata.role || 'Resident';
+            document.getElementById("role-view").textContent = 'Admin' || 'Resident';
             
             // Show profile section for specific roles
             const role = Clerk.user.unsafeMetadata.role || "Resident";
             if (role === "Resident" || role === "Admin") {
+                console.log(`User role: ${role}`);
                 profileSection.style.display = "block";
+                adminSection.style.display = role === "Admin" ? "none" : "block";
 
                 // Populate profile details
                 document.getElementById("profile-pic").src = Clerk.user.profileImageUrl || "/assets/profile_4372360.png";
@@ -52,6 +57,7 @@ window.addEventListener("load", async () => {
             heroSection.style.display = "block";
             complaintsSection.style.display = "none";
             profileSection.style.display = "none";
+
         }
 
         // Load the saved profile picture on page load

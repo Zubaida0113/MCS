@@ -53,7 +53,7 @@
       </div>
     </div>
   </nav>
-
+This is admin dashboard page
   <div class="container py-5">
     <h2 class="text-center mb-4">Admin Profile</h2>
     <div class="card mx-auto" style="max-width: 800px;">
@@ -93,6 +93,24 @@
             style="display: none;">Save Changes</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4">View Complaints</h2>
+    <div id="complaints-container" class="row g-4">
+      <!-- Example Complaint Card -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Complaint #12345</h5>
+            <p class="card-text"><strong>Description:</strong> Water leakage in the main pipeline.</p>
+            <p class="card-text"><strong>Status:</strong> <span id="status-12345">Pending</span></p>
+            <button class="btn btn-outline-primary" onclick="toggleComplaintStatus('12345')">Mark as Resolved</button>
+          </div>
+        </div>
+      </div>
+      <!-- Add more complaint cards dynamically -->
     </div>
   </div>
 
@@ -137,6 +155,7 @@
     integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
     crossorigin="anonymous"></script>
   <script src="/JS/main.js"></script>
+  <script src="/JS/admin.js"></script>
   <script>
     document.querySelectorAll('a.nav-link').forEach(link => {
       link.addEventListener('click', function(event) {
@@ -151,55 +170,8 @@
         }
       });
     });
-
-    function toggleAdminEdit(isEditable) {
-      const nameField = document.getElementById("admin-profile-name");
-      const officeField = document.getElementById("admin-profile-office");
-      const officeDropdown = document.getElementById("admin-office-dropdown");
-      const changePictureBtn = document.getElementById("admin-change-picture-btn");
-
-      if (isEditable) {
-        // Convert fields to input or dropdown
-        nameField.outerHTML = `<input type="text" id="admin-profile-name" class="form-control me-2" value="${nameField.innerText}">`;
-        officeField.style.display = "none";
-        officeDropdown.style.display = "block";
-
-        // Show Change Picture button
-        changePictureBtn.style.display = "inline-block";
-
-        // Toggle buttons
-        document.getElementById("admin-edit-button").style.display = "none";
-        document.getElementById("admin-save-button").style.display = "inline-block";
-      } else {
-        // Convert input fields back to plain text
-        const nameInput = document.getElementById("admin-profile-name");
-        const officeValue = officeDropdown.value || officeField.innerText;
-
-        nameInput.outerHTML = `<p id="admin-profile-name" class="profile-value mb-0">${nameInput.value}</p>`;
-        officeField.innerText = officeValue;
-        officeField.style.display = "block";
-        officeDropdown.style.display = "none";
-
-        // Hide Change Picture button
-        changePictureBtn.style.display = "none";
-
-        // Toggle buttons
-        document.getElementById("admin-edit-button").style.display = "inline-block";
-        document.getElementById("admin-save-button").style.display = "none";
-      }
-    }
-
-    function previewAdminProfilePicture(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const profilePic = document.getElementById("admin-profile-pic");
-          profilePic.src = e.target.result; // Set the selected image as the profile picture
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+    
+    
   </script>
 </body>
 

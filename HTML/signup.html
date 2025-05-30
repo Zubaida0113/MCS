@@ -75,15 +75,21 @@
                 `;
                 signUpDiv.parentNode.insertBefore(roleSelection, signUpDiv);
 
+                // Store the selected role in localStorage
+                const roleSelect = document.getElementById('role-select');
+                roleSelect.addEventListener('change', () => {
+                    const selectedRole = roleSelect.value;
+                    console.log("Role selected during signup:", selectedRole);
+                    localStorage.setItem('selectedRole', selectedRole);
+                });
+
+                // Set default role in localStorage if not already set
+                if (!localStorage.getItem('selectedRole')) {
+                    localStorage.setItem('selectedRole', roleSelect.value);
+                }
+
                 window.Clerk.mountSignUp(signUpDiv, {
-                    afterSignUpUrl: "/HTML/main.html", // Default redirect
-                    afterSignInUrl: "/HTML/main.html", // Default redirect
-                    signUpUrl: "/HTML/signup.html",
-                    prefill: {
-                        unsafeMetadata: {
-                            role: () => document.getElementById('role-select').value // Dynamically set role
-                        }
-                    }
+                    afterSignUpUrl: "/HTML/main.html" // Redirect after signup
                 });
             } catch (error) {
                 console.error('Error initializing Clerk:', error);
