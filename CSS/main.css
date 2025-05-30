@@ -382,3 +382,8 @@ html {
   gap: 10px;
   justify-content: center;
 }
+.form-label{
+  color:#007bff;
+  font-weight: bold;
+  
+}

@@ -1,10 +1,12 @@
+const { Clerk } = require("@clerk/clerk-js");
+
 window.addEventListener("load", async () => {
     try {
         await Clerk.load();
 
         const signedOutButtons = document.getElementById("signed-out-buttons");
         const signedInButtons = document.getElementById("signed-in-buttons");
-        const welcomeDiv = document.getElementById("welcome");
+        // const welcomeDiv = document.getElementById("welcome");
         const heroSection = document.getElementById("hero");
         const aboutSection = document.getElementById("about");
         const worksSection = document.getElementById("how-it-works");
@@ -17,7 +19,7 @@ window.addEventListener("load", async () => {
             // Authenticated user view
             signedOutButtons.style.display = "none";
             signedInButtons.style.display = "flex";
-            welcomeDiv.innerText = `Welcome`;
+            // welcomeDiv.innerText = `Welcome`;
             heroSection.style.display = "none";
             aboutSection.style.display = "none";
             worksSection.style.display = "none";
@@ -136,27 +138,67 @@ function saveProfileChanges() {
     document.querySelector('button[onclick="saveProfileChanges()"]').disabled = true;
   }
 
-  function toggleEdit(isEditable) {
-    const fields = ['profile-name', 'profile-location', 'profile-phone'];
-    fields.forEach(fieldId => {
-      const field = document.getElementById(fieldId);
-      if (isEditable) {
-        // Convert plain text to input fields
-        const value = field.innerText;
-        field.outerHTML = `<input type="text" id="${fieldId}" class="form-control mb-3" value="${value}">`;
-      } else {
-        // Convert input fields back to plain text
-        const input = document.getElementById(fieldId);
-        const value = input.value;
-        input.outerHTML = `<p id="${fieldId}" class="form-control-plaintext">${value}</p>`;
-      }
-    });
+function toggleEdit(isEditing) {
+    if (!isEditing) {
+        // On Save — update the text content with input values
+        document.getElementById('name-view').textContent = document.getElementById('name-input').value;
+        document.getElementById('role-view').textContent = document.getElementById('role-input').value;
+        document.getElementById('location-view').textContent = document.getElementById('location-input').value;
+        document.getElementById('phone-view').textContent = document.getElementById('phone-input').value;
+    } else {
+        // On Edit — prefill inputs with current view text
+        document.getElementById('name-input').value = document.getElementById('name-view').textContent;
+        document.getElementById('role-input').value = document.getElementById('role-view').textContent || Clerk.user.unsafeMetadata.role || "Resident";
+        document.getElementById('location-input').value = document.getElementById('location-view').textContent;
+        document.getElementById('phone-input').value = document.getElementById('phone-view').textContent;
+    }
 
-    // Toggle button visibility
-    document.getElementById('edit-button').style.display = isEditable ? 'none' : 'inline-block';
-    document.getElementById('save-button').style.display = isEditable ? 'inline-block' : 'none';
+    // Toggle view vs input fields
+    document.getElementById('name-view').style.display = isEditing ? 'none' : 'block';
+    document.getElementById('name-input').style.display = isEditing ? 'block' : 'none';
+
+    document.getElementById('role-view').style.display = isEditing ? 'none' : 'block';
+    document.getElementById('role-input').style.display = isEditing ? 'block' : 'none';
+
+    document.getElementById('location-view').style.display = isEditing ? 'none' : 'block';
+    document.getElementById('location-input').style.display = isEditing ? 'block' : 'none';
+    document.getElementById('location-btn').style.display = isEditing ? 'inline-block' : 'none';
+
+    document.getElementById('phone-view').style.display = isEditing ? 'none' : 'block';
+    document.getElementById('phone-input').style.display = isEditing ? 'block' : 'none';
+
+    // Profile picture controls
+    document.getElementById('pic-edit-controls').style.display = isEditing ? 'flex' : 'none';
+
+    // Toggle buttons
+    document.getElementById('edit-button').style.display = isEditing ? 'none' : 'inline-block';
+    document.getElementById('save-button').style.display = isEditing ? 'inline-block' : 'none';
+}
+
+function saveProfileData() {
+    const name = document.getElementById("name-input").value;
+    const role = document.getElementById("profile-role").innerText;
+    const location = document.getElementById("location-input").value;
+  
+    const profile = { name, role, location };
+    localStorage.setItem("profile", JSON.stringify(profile));
+  
+    // Update UI
+    document.getElementById("name-view").innerText = name;
+    document.getElementById("profile-location").innerText = location;
   }
-
+  window.addEventListener("DOMContentLoaded", () => {
+    const storedProfile = localStorage.getItem("profile");
+    if (storedProfile) {
+      const { name, role, location } = JSON.parse(storedProfile);
+      document.getElementById("name-view").innerText = name;
+      document.getElementById("profile-role").innerText = role;
+      document.getElementById("profile-location").innerText = location;
+      document.getElementById("name-input").value = name;
+      document.getElementById("location-input").value = location;
+    }
+  });
+  
 function previewProfilePicture(event) {
     const file = event.target.files[0];
     if (file) {
@@ -193,7 +235,7 @@ async function fetchLocation() {
                 const data = await response.json();
                 if (data.results && data.results.length > 0) {
                     const address = data.results[0].formatted;
-                    document.getElementById("profile-location").innerText = address; // Update the location field
+                    document.getElementById("location-input").value = address; // Update the location field
                     alert("Location updated successfully!");
                 } else {
                     alert("Unable to fetch address. Please try again.");
