@@ -81,56 +81,64 @@
       <h2 class="text-center mb-4">Profile Details</h2>
       <div class="card mx-auto" style="max-width: 1000px;">
         <div class="card-body d-flex align-items-center justify-content-evenly flex-wrap">
-          
+
           <!-- Profile Picture -->
           <div class="text-center me-5 d-flex flex-column align-items-center">
-            <img id="profile-pic" src="/assets/profile_4372360.png" alt="Profile Picture" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
-            
+            <img id="profile-pic" src="/assets/profile_4372360.png" alt="Profile Picture" class="rounded-circle mb-3"
+              style="width: 120px; height: 120px; object-fit: cover;">
+
             <!-- Show in edit mode -->
             <div id="pic-edit-controls" style="display: none;">
               <label for="file-input" class="btn btn-outline-primary btn-sm mt-2">Change Picture</label>
-              <input type="file" id="file-input" accept="image/*" style="display: none;" onchange="previewProfilePicture(event)">
+              <input type="file" id="file-input" accept="image/*" style="display: none;"
+                onchange="previewProfilePicture(event)">
               <button class="btn btn-primary btn-sm mt-2" onclick="saveProfilePicture()">Save</button>
             </div>
           </div>
-  
+
           <!-- Profile Details -->
           <div>
             <!-- Name -->
             <div class="mb-3 d-flex align-items-center gap-3">
               <label class="form-label mb-0" style="min-width: 80px;">Name:</label>
               <p id="name-view" class="form-control-plaintext mb-0"></p>
-              <input type="text" id="name-input" class="form-control" placeholder="Your Username" style="display: none; flex:1;">
+              <input type="text" id="name-input" class="form-control" placeholder="Your Username"
+                style="display: none; flex:1;">
             </div>
-  
+
             <!-- Role -->
             <div class="mb-3 d-flex align-items-center gap-3">
               <label class="form-label mb-0" style="min-width: 80px;">Role:</label>
               <p id="role-view" class="form-control-plaintext mb-0"></p>
-              <input type="text" id="role-input" class="form-control" style="display: none; flex:1;" placeholder="Your Role">
+              <input type="text" id="role-input" class="form-control" style="display: none; flex:1;"
+                placeholder="Your Role">
             </div>
-  
+
             <!-- Location -->
             <div class="mb-3 d-flex align-items-center gap-3">
               <label class="form-label mb-0" style="min-width: 80px;">Location:</label>
               <p id="location-view" class="form-control-plaintext mb-0"></p>
-              <input type="text" id="location-input" class="form-control mb-2" style="display: none; flex: 1;" placeholder="Your Location">
-              <button class="btn btn-outline-primary btn-sm" id="location-btn" style="display: none;" onclick="fetchLocation()">Use Current Location</button>
+              <input type="text" id="location-input" class="form-control mb-2" style="display: none; flex: 1;"
+                placeholder="Your Location">
+              <button class="btn btn-outline-primary btn-sm" id="location-btn" style="display: none;"
+                onclick="fetchLocation()">Use Current Location</button>
             </div>
-  
+
             <!-- Phone -->
             <div class="mb-3 d-flex align-items-center gap-3">
               <label class="form-label mb-0" style="min-width: 80px;">Phone:</label>
               <p id="phone-view" class="form-control-plaintext mb-0"></p>
-              <input type="text" id="phone-input" class="form-control" style="display: none; flex:1;" placeholder="Your Phone Number">
+              <input type="text" id="phone-input" class="form-control" style="display: none; flex:1;"
+                placeholder="Your Phone Number">
             </div>
           </div>
         </div>
-  
+
         <!-- Buttons -->
         <div class="text-center mb-3">
           <button class="btn btn-outline-primary" id="edit-button" onclick="toggleEdit(true)">Edit</button>
-          <button class="btn btn-primary" id="save-button" style="display: none;" onclick="toggleEdit(false)">Save Changes</button>
+          <button class="btn btn-primary" id="save-button" style="display: none;" onclick="toggleEdit(false)">Save
+            Changes</button>
         </div>
       </div>
     </div>
@@ -219,7 +227,7 @@
       </div>
     </div>
   </section>
-  <section id="complaints-section" style="background-color: #007bff;" class="py-5" >
+  <section id="complaints-section" style="background-color: #007bff;" class="py-5">
     <div class="container">
       <h2 class="text-center mb-4" style="color: white;">Complaints Management</h2>
       <div class="row g-4">
@@ -269,7 +277,8 @@
             </div>
             <div class="mb-3">
               <label for="feedback-comment" class="form-label">Comment</label>
-              <textarea id="feedback-comment" class="form-control" rows="4" placeholder="Enter your feedback" required></textarea>
+              <textarea id="feedback-comment" class="form-control" rows="4" placeholder="Enter your feedback"
+                required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit Feedback</button>
           </form>
@@ -465,7 +474,7 @@
       </div>
     </div>
   </section>
-  
+
   <footer class="bg-light text-muted py-4">
     <div class="container">
       <div class="row align-items-center">
@@ -510,7 +519,7 @@
   <script src="/JS/main.js"></script>
   <script>
     document.querySelectorAll('a.nav-link').forEach(link => {
-      link.addEventListener('click', function(event) {
+      link.addEventListener('click', function (event) {
         event.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
@@ -522,8 +531,6 @@
         }
       });
     });
-
   </script>
 </body>
-
 </html>
