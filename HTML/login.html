@@ -33,12 +33,12 @@
 </head>
 
 <body>
-    <div class="signup-container login-container">
-        <select id="role-select" class="form-select">
-            <option value="Admin">Admin</option>
+    <div class="signup-container login-container bg-light">
+        <select id="role-select" class="form-select" aria-label="Select Role">
           <option value="Resident">Resident</option>
-         
+          <option value="Admin">Admin</option>
         </select>
+        <button class="btn btn-primary mt-3" onclick="handleRoleSelection()">Save</button>
         <div id="app"></div>
       </div>
    
@@ -54,18 +54,13 @@
     </div>
 </div>
 <script>
-    const roleSelect = document.getElementById('role-select');
-if (roleSelect) {
-  roleSelect.addEventListener('change', () => {
-    console.log("Role selected:", roleSelect.value);
-    
-    localStorage.setItem('selectedRole', roleSelect.value);
-  });
-  
-  // Optionally, set default if user never changes
-  localStorage.setItem('selectedRole', roleSelect.value);
-}
-
+    function handleRoleSelection() {
+        const selectedRole = document.getElementById("role-select").value;
+        localStorage.setItem("selectedRole", selectedRole);
+        alert(`Role selected: ${selectedRole}`);
+        // Redirect to the page where role-check logic runs
+        // window.location.href = "index.html"; // Replace with your desired page
+    }
 </script>
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">

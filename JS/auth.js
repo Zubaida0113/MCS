@@ -8,14 +8,17 @@ window.addEventListener('load', async function () {
         console.log("Retrieved role from localStorage:", role);
 
         // Role-based redirect
-        if (role === "Admin") {
-            window.location.href = "/HTML/admin/dashboard.html";
-        } else if (role === "Resident") {
-            window.location.href = "/HTML/main.html";
-        } else {
-            // Fallback if role is missing or invalid
-            console.error("Invalid or missing role. Redirecting to main page.");
-            window.location.href = "/HTML/main.html";
+        switch (role) {
+            case "Admin":
+                window.location.href = "/HTML/admin/dashboard.html";
+                break;
+            case "Resident":
+                window.location.href = "/HTML/main.html";
+                break;
+            default:
+                console.error("Invalid or missing role. Redirecting to main page.");
+                window.location.href = "/HTML/main.html";
+                break;
         }
     } else {
         document.getElementById('app').innerHTML = `

@@ -75,18 +75,18 @@ This is admin dashboard page
           </div>
           <div class="mb-3 d-flex align-items-center">
             <span class="profile-label me-2">Role:</span>
-            <p id="admin-profile-role" class="profile-value mb-0">Admin</p>
+            <p id="admin-profile-role" class="profile-value mb-0" placeholder="Admin Name">Admin</p>
           </div>
           <div class="mb-3 d-flex align-items-center">
             <span class="profile-label me-2">Office:</span>
-            <p id="admin-profile-office" class="profile-value mb-0">Not Assigned</p>
+            <p id="admin-profile-office" class="profile-value mb-0" placeholder="Not Assigned"></p>
             <select id="admin-office-dropdown" class="form-select" style="display: none;">
               <option value="" disabled selected>Select Office</option>
-              <option value="Water Department">Water Department</option>
-              <option value="Electricity Department">Electricity Department</option>
-              <option value="Sanitation Department">Sanitation Department</option>
-              <option value="Roads and Transport">Roads and Transport</option>
-            </select>
+              <option value="Sector-15 Noida">Sector-15 Noida</option>
+                <option value="Sector-12 Noida">Sector-12 Noida</option>
+                <option value="Beta, Parichowk, Greater Noida">Beta, Parichowk, Greater Noida</option>
+                <option value="Sector-144 Noida">Sector-144 Noida</option>
+              </select>
           </div>
           <button class="btn btn-outline-primary" id="admin-edit-button" onclick="toggleAdminEdit(true)">Edit</button>
           <button class="btn btn-primary" id="admin-save-button" onclick="toggleAdminEdit(false)"
@@ -98,6 +98,16 @@ This is admin dashboard page
 
   <div class="container py-5">
     <h2 class="text-center mb-4">View Complaints</h2>
+    <div class="mb-4">
+        <label for="locality-select" class="form-label">Filter by Locality:</label>
+        <select id="locality-select" class="form-select" onchange="loadComplaintsByLocality(this.value)">
+            <option value="" disabled selected>Select Locality</option>
+            <option value="Sector-15 Noida">Sector-15 Noida</option>
+            <option value="Sector-12 Noida">Sector-12 Noida</option>
+            <option value="Beta, Parichowk, Greater Noida">Beta, Parichowk, Greater Noida</option>
+            <option value="Sector-144 Noida">Sector-144 Noida</option>
+        </select>
+    </div>
     <div id="complaints-container" class="row g-4">
       <!-- Example Complaint Card -->
       <div class="col-md-6">
@@ -114,6 +124,7 @@ This is admin dashboard page
     </div>
   </div>
 
+  
   <footer class="bg-light text-muted py-4">
     <div class="container">
       <div class="row align-items-center">

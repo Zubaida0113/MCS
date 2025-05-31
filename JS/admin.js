@@ -1,21 +1,27 @@
 function toggleAdminEdit(isEditing) {
     // Toggle input fields for name and office
     const nameView = document.getElementById("admin-profile-name");
-    const nameInput = document.createElement("input");
-    nameInput.type = "text";
-    nameInput.id = "admin-name-input";
-    nameInput.className = "form-control";
-    nameInput.value = nameView.textContent;
+    let nameInput = document.getElementById("admin-name-input");
 
     if (isEditing) {
+        // Create the input field only if it doesn't already exist
+        if (!nameInput) {
+            nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.id = "admin-name-input";
+            nameInput.className = "form-control";
+            nameInput.value = nameView.textContent;
+            nameView.parentNode.appendChild(nameInput);
+        }
         nameView.style.display = "none";
-        nameView.parentNode.appendChild(nameInput);
+        nameInput.style.display = "block";
         document.getElementById("admin-office-dropdown").style.display = "block";
         document.getElementById("admin-profile-office").style.display = "none";
     } else {
-        nameView.textContent = document.getElementById("admin-name-input").value;
+        // Save changes and toggle back to view mode
+        nameView.textContent = nameInput.value;
         nameView.style.display = "block";
-        nameInput.remove();
+        nameInput.style.display = "none";
         document.getElementById("admin-profile-office").textContent = document.getElementById("admin-office-dropdown").value || "Not Assigned";
         document.getElementById("admin-office-dropdown").style.display = "none";
         document.getElementById("admin-profile-office").style.display = "block";
@@ -60,4 +66,33 @@ function toggleComplaintStatus(complaintId) {
         statusElement.textContent = "Pending";
         alert(`Complaint #${complaintId} marked as Pending.`);
     }
+}
+
+function loadComplaintsByLocality(locality) {
+    const complaints = JSON.parse(localStorage.getItem("complaints") || "[]");
+    const complaintsContainer = document.getElementById("complaints-container");
+    complaintsContainer.innerHTML = ""; // Clear existing cards
+
+    const filteredComplaints = complaints.filter(complaint => complaint.locality === locality);
+
+    if (filteredComplaints.length === 0) {
+        complaintsContainer.innerHTML = '<div class="col-12 text-center">No complaints found for the selected locality.</div>';
+        return;
+    }
+
+    filteredComplaints.forEach(complaint => {
+        const card = document.createElement("div");
+        card.className = "col-md-6";
+        card.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Complaint #${complaint.id}</h5>
+                    <p class="card-text"><strong>Description:</strong> ${complaint.description}</p>
+                    <p class="card-text"><strong>Status:</strong> <span id="status-${complaint.id}">${complaint.status}</span></p>
+                    <button class="btn btn-outline-primary" onclick="toggleComplaintStatus('${complaint.id}')">Mark as Resolved</button>
+                </div>
+            </div>
+        `;
+        complaintsContainer.appendChild(card);
+    });
 }
