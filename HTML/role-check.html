@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Role Check</title>
+</head>
+
+<body>
+    <script>
+        // Retrieve the selected role from localStorage
+        const selectedRole = localStorage.getItem("selectedRole");
+
+        // Redirect based on the selected role
+        if (selectedRole === "Admin") {
+            window.location.href = "/HTML/admin/dashboard.html";
+        } else if (selectedRole === "Resident") {
+            window.location.href = "/HTML/main.html";
+        } else {
+            console.error("Invalid or missing role. Redirecting to main page.");
+            window.location.href = "/HTML/main.html";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,63 +1,62 @@
-
-
 window.addEventListener("load", async () => {
     try {
         await Clerk.load();
 
         const signedOutButtons = document.getElementById("signed-out-buttons");
         const signedInButtons = document.getElementById("signed-in-buttons");
-        // const welcomeDiv = document.getElementById("welcome");
         const heroSection = document.getElementById("hero");
         const aboutSection = document.getElementById("about");
         const worksSection = document.getElementById("how-it-works");
-        const feedbackSection = document.getElementById("feedback-carousel");
+        const feedbackSection = document.getElementById("feedback-section");
         const complaintsSection = document.getElementById("complaints-section");
         const profileSection = document.getElementById("profile-section");
-        // const adminprofileSection = document.getElementById("admin-profile-section");
         const adminSection = document.getElementById("admin-profile");
+        const heading = document.getElementById("heading");
+        const aboutNavLink = document.getElementById("nav-about"); // Navbar "About" link
 
         // Check authentication state
         if (Clerk.user) {
-            // Authenticated user view
             signedOutButtons.style.display = "none";
             signedInButtons.style.display = "flex";
-            // welcomeDiv.innerText = `Welcome`;
             profileSection.style.display = "block";
             heroSection.style.display = "none";
-            aboutSection.style.display = "none";
-            worksSection.style.display = "none";
-            feedbackSection.style.display = "none";
-            complaintsSection.style.display = "block";
-            adminSection.style.display = "none";
 
-            // Load profile data
-            document.getElementById("name-view").textContent = Clerk.user.fullName || '';
-            document.getElementById("role-view").textContent = 'Admin' || 'Resident';
-            
-            // Show profile section for specific roles
             const role = Clerk.user.unsafeMetadata.role || "Resident";
-            if (role === "Resident" || role === "Admin") {
-                console.log(`User role: ${role}`);
-                profileSection.style.display = "block";
-                adminSection.style.display = role === "Admin" ? "none" : "block";
 
-                // Populate profile details
-                document.getElementById("profile-pic").src = Clerk.user.profileImageUrl || "/assets/profile_4372360.png";
-                document.getElementById("profile-name").innerText = Clerk.user.fullName;
-                document.getElementById("profile-role").innerText = role;
-                document.getElementById("profile-location").innerText = Clerk.user.unsafeMetadata.location || "Not provided";
-                document.getElementById("profile-phone").innerText = Clerk.user.unsafeMetadata.phone || "Not provided";
-            } else {
-                profileSection.style.display = "none";
+            if (role === "Resident") {
+                heading.style.display = "block";
+                feedbackSection.style.display = "block";
+                complaintsSection.style.display = "block";
+                aboutSection.style.display = "none";
+                worksSection.style.display = "none";
+                adminSection.style.display = "none";
+
+                // Change navbar link text for "Resident" role
+                aboutNavLink.textContent = "Complaints";
+                aboutNavLink.href = "#complaints-section"; // Update link target
+            } else if (role === "Admin") {
+                heading.style.display = "block";
+                feedbackSection.style.display = "none";
+                complaintsSection.style.display = "block";
+                aboutSection.style.display = "none";
+                worksSection.style.display = "none";
+                adminSection.style.display = "block";
             }
+
+            // Populate profile details
+            document.getElementById("profile-pic").src = Clerk.user.profileImageUrl || "/assets/profile_4372360.png";
+            document.getElementById("profile-name").innerText = Clerk.user.fullName;
+            document.getElementById("profile-role").innerText = role;
+            document.getElementById("profile-location").innerText = Clerk.user.unsafeMetadata.location || "Not provided";
+            document.getElementById("profile-phone").innerText = Clerk.user.unsafeMetadata.phone || "Not provided";
         } else {
-            // Non-authenticated user view
             signedOutButtons.style.display = "flex";
             signedInButtons.style.display = "none";
             heroSection.style.display = "block";
             complaintsSection.style.display = "none";
             profileSection.style.display = "none";
-
+            heading.style.display = "none";
+            feedbackSection.style.display = "none";
         }
 
         // Load the saved profile picture on page load
@@ -313,4 +312,75 @@ async function getComplaints(userId) {
         console.error('Error fetching complaints:', error);
         throw error;
     }
+}
+
+// Handle feedback form submission
+document.getElementById("feedback-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = document.getElementById("feedback-name").value.trim();
+    const locality = document.getElementById("feedback-locality").value;
+    const comment = document.getElementById("feedback-comment").value.trim();
+
+    if (!name || !locality || !comment) {
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    // Save feedback to localStorage
+    const feedbacks = JSON.parse(localStorage.getItem("feedbacks") || "[]");
+    const newFeedback = { name, locality, comment };
+    feedbacks.push(newFeedback);
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+
+    // Add feedback to "Your Feedback" section dynamically
+    addFeedbackToList(newFeedback);
+
+    // Clear the form fields
+    document.getElementById("feedback-name").value = "";
+    document.getElementById("feedback-locality").value = "";
+    document.getElementById("feedback-comment").value = "";
+
+    alert("Thank you for your feedback!");
+});
+
+// Load feedbacks on page load
+window.addEventListener("DOMContentLoaded", function () {
+    const feedbacks = JSON.parse(localStorage.getItem("feedbacks") || "[]");
+    feedbacks.forEach(addFeedbackToList);
+});
+
+// Add feedback to "Your Feedback" section
+function addFeedbackToList(feedback) {
+    const feedbackList = document.getElementById("your-feedback-list");
+    const listItem = document.createElement("li");
+    listItem.className = "list-group-item";
+    listItem.innerHTML = `<strong>${feedback.name} (${feedback.locality}):</strong> ${feedback.comment}`;
+    feedbackList.appendChild(listItem);
+}
+
+// Add feedback to the feedback carousel
+function addFeedbackToCarousel(feedback) {
+    const carouselInner = document.querySelector("#feedbackCarousel .carousel-inner");
+    const carouselItem = document.createElement("div");
+    carouselItem.className = "carousel-item";
+    carouselItem.innerHTML = `
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">${feedback.name}</h5>
+                        <p class="card-text">${feedback.comment}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // If it's the first feedback, make it active
+    if (carouselInner.children.length === 0) {
+        carouselItem.classList.add("active");
+    }
+
+    carouselInner.appendChild(carouselItem);
 }

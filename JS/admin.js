@@ -86,7 +86,7 @@ function loadComplaintsByLocality(locality) {
         card.innerHTML = `
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Complaint #${complaint.id}</h5>
+                    <h5 class="card-title" style="color: #007bff;">Complaint #${complaint.id}</h5>
                     <p class="card-text"><strong>Description:</strong> ${complaint.description}</p>
                     <p class="card-text"><strong>Status:</strong> <span id="status-${complaint.id}">${complaint.status}</span></p>
                     <button class="btn btn-outline-primary" onclick="toggleComplaintStatus('${complaint.id}')">Mark as Resolved</button>

@@ -387,3 +387,8 @@ html {
   font-weight: bold;
   
 }
+.heading{
+  background-color: #007bff;
+   color: aliceblue;
+   font-size: larger;
+}
