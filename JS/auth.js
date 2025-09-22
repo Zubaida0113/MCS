@@ -13,11 +13,11 @@ window.addEventListener('load', async function () {
                 window.location.href = "/HTML/admin/dashboard.html";
                 break;
             case "Resident":
-                window.location.href = "/HTML/main.html";
+                window.location.href = "/main.html";
                 break;
             default:
                 console.error("Invalid or missing role. Redirecting to main page.");
-                window.location.href = "/HTML/main.html";
+                window.location.href = "/main.html";
                 break;
         }
     } else {
@@ -27,7 +27,7 @@ window.addEventListener('load', async function () {
         const signInDiv = document.getElementById('sign-in');
         Clerk.mountSignIn(signInDiv, {
             afterSignInUrl: "/HTML/login.html", // Reload to check and redirect by role
-            afterSignOutUrl: "/HTML/main.html",
+            afterSignOutUrl: "/main.html",
             signUpUrl: "/HTML/signup.html"
         });
     }
