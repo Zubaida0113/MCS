@@ -90,7 +90,7 @@ async function handleSignOut() {
     try {
         await window.Clerk.signOut();
         // Redirect to main page after successful logout
-        window.location.href = '/main.html';
+        window.location.href = '/index.html';
     } catch (error) {
         console.error('Error during sign out:', error);
     }
