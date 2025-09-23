@@ -45,7 +45,8 @@ It empowers **citizens** to easily report issues, track their status, and provid
 
 ## 📸 Screenshots / Demo (Optional)
 
-> *(Add screenshots or a demo video link here if available)*  
+> <img width="1135" height="600" alt="Screenshot 2025-06-18 at 12 08 29 PM" src="https://github.com/user-attachments/assets/a3dc3117-a0d5-4555-8b9f-4a7993f93470" />
+
 
 ---
 
@@ -55,4 +56,4 @@ This project is licensed under the **MIT License** – feel free to use and modi
 
 ---
 
-👨‍💻 **Developed by:** [Your Name]  
+👨‍💻 **Developed by:** Zubaida Sehnaz  
